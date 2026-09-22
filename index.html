@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seerla Yuva Srinivas Kishore | Editorial Tech Portfolio</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Playfair Display for editorial headings & Plus Jakarta Sans for body -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <!-- FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Tailwind Configuration for Magazine Palette -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        editorialCream: '#F4ECD8',
+                        editorialSand: '#E6DCBF',
+                        editorialSlate: '#2E3856',
+                        editorialBlue: '#3B456B',
+                        editorialAccent: '#D97706',
+                        editorialRose: '#E0A96D',
+                        editorialDark: '#1A2138'
+                    },
+                    fontFamily: {
+                        serif: ['"Playfair Display"', 'serif'],
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        mono: ['"Space Mono"', 'monospace']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #F4ECD8;
+            color: #2E3856;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            overflow-x: hidden;
+        }
+
+        .editorial-title {
+            font-family: 'Playfair Display', serif;
+        }
+
+        .code-font {
+            font-family: 'Space Mono', monospace;
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #F4ECD8;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #2E3856;
+            border-radius: 4px;
+        }
+
+        /* Float animation */
+        @keyframes floatSlow {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-10px) rotate(1deg); }
+        }
+        .animate-float {
+            animation: floatSlow 6s ease-in-out infinite;
+        }
+
+        /* Marquee ticker animation */
+        @keyframes marquee {
+            0% { transform: translateX(0%); }
+            100% { transform: translateX(-50%); }
+        }
+        .animate-marquee {
+            display: flex;
+            width: 200%;
+            animation: marquee 25s linear infinite;
+        }
+        .animate-marquee:hover {
+            animation-play-state: paused;
+        }
+
+        /* Grain overlay for magazine texture */
+        .magazine-grain {
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
+        }
+
+        /* Glassmorphism card utility */
+        .editorial-card {
+            background: rgba(255, 255, 255, 0.7);
+            border: 2px solid #2E3856;
+            box-shadow: 6px 6px 0px #2E3856;
+            transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .editorial-card:hover {
+            transform: translate(-3px, -3px);
+            box-shadow: 9px 9px 0px #2E3856;
+        }
+
+        .editorial-btn {
+            background-color: #2E3856;
+            color: #F4ECD8;
+            border: 2px solid #2E3856;
+            box-shadow: 4px 4px 0px #D97706;
+            transition: all 0.15s ease;
+        }
+        .editorial-btn:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 6px 6px 0px #D97706;
+            background-color: #3B456B;
+        }
+        .editorial-btn:active {
+            transform: translate(1px, 1px);
+            box-shadow: 2px 2px 0px #D97706;
+        }
+
+        /* Fade in on scroll utility */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body class="magazine-grain relative selection:bg-editorialSlate selection:text-editorialCream">
+
+    <!-- Top Editorial Header & Nav -->
+    <header class="sticky top-0 z-50 bg-editorialCream/95 backdrop-blur-md border-b-2 border-editorialSlate px-4 lg:px-12 py-4">
+        <div class="max-w-7xl mx-auto flex items-center justify-between">
+            <a href="#" class="flex items-center gap-3 group">
+                <div class="w-10 h-10 bg-editorialSlate text-editorialCream rounded-full flex items-center justify-center font-serif font-bold text-xl group-hover:rotate-12 transition-transform">
+                    K
+                </div>
+                <div>
+                    <span class="editorial-title font-bold text-lg lg:text-xl tracking-tight block leading-none">YUVA KISHORE</span>
+                    
+                </div>
+            </a>
+
+            <!-- Desktop Nav Links -->
+            <nav class="hidden md:flex items-center gap-8 font-medium text-sm tracking-wide">
+                <a href="#about" class="hover:text-editorialAccent transition-colors">THE PROFILE</a>
+                <a href="#skills" class="hover:text-editorialAccent transition-colors">TECH STACK</a>
+                <a href="#projects" class="hover:text-editorialAccent transition-colors">FEATURED WORKS</a>
+                <a href="#milestones" class="hover:text-editorialAccent transition-colors">MILESTONES</a>
+                <a href="#contact" class="hover:text-editorialAccent transition-colors">CONNECT</a>
+            </nav>
+
+            <!-- Actions -->
+            <div class="flex items-center gap-3">
+                <a href="https://mail.google.com/mail/?view=cm&fs=1&to=seerlayuvasrinivaskishore@gmail.com" target="_blank" class="hidden sm:inline-flex items-center gap-2 px-4 py-2 text-xs font-bold uppercase tracking-wider editorial-btn rounded-full">
+                    <i class="fa-regular fa-paper-plane"></i> Let's Talk
+                </a>
+                <!-- Mobile Menu Button -->
+                <button id="menu-toggle" class="md:hidden w-10 h-10 border-2 border-editorialSlate rounded-lg flex items-center justify-center bg-editorialSand text-editorialSlate focus:outline-none">
+                    <i class="fa-solid fa-bars text-lg"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Nav Drawer -->
+        <div id="mobile-menu" class="hidden md:hidden pt-4 pb-2 border-t-2 border-editorialSlate mt-4 flex flex-col gap-3 font-semibold text-center">
+            <a href="#about" class="py-2 hover:bg-editorialSand rounded">THE PROFILE</a>
+            <a href="#skills" class="py-2 hover:bg-editorialSand rounded">TECH STACK</a>
+            <a href="#projects" class="py-2 hover:bg-editorialSand rounded">FEATURED WORKS</a>
+            <a href="#milestones" class="py-2 hover:bg-editorialSand rounded">MILESTONES</a>
+            <a href="#contact" class="py-2 hover:bg-editorialSand rounded">CONNECT</a>
+        </div>
+    </header>
+
+    <!-- Magazine Ticker Bar -->
+    <div class="bg-editorialSlate text-editorialCream py-2.5 overflow-hidden border-b-2 border-editorialSlate text-xs code-font uppercase tracking-widest">
+        <div class="animate-marquee whitespace-nowrap flex gap-12">
+            <span>⚡ CSE CORE @ VIT-AP 2024–2028</span>
+            <span>•</span>
+            <span>CGPA: 9.19 / 10</span>
+            <span>•</span>
+            <span>FULL STACK ENGINEER & SOFTWARE ARCHITECT</span>
+            <span>•</span>
+            <span>MONGODB CERTIFIED ADMINISTRATOR</span>
+            <span>•</span>
+            <span>BUILDING SCALABLE DIGITAL PRODUCTS</span>
+            <span>•</span>
+            <span>⚡ CSE CORE @ VIT-AP 2024–2028</span>
+            <span>•</span>
+            <span>CGPA: 9.19 / 10</span>
+            <span>•</span>
+            <span>FULL STACK ENGINEER & SOFTWARE ARCHITECT</span>
+            <span>•</span>
+            <span>MONGODB CERTIFIED ADMINISTRATOR</span>
+            <span>•</span>
+            <span>BUILDING SCALABLE DIGITAL PRODUCTS</span>
+        </div>
+    </div>
+
+    <!-- Hero Magazine Cover Section -->
+    <section class="relative px-4 lg:px-12 py-12 lg:py-20 max-w-7xl mx-auto">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+            
+            <!-- Left Editorial Title Block -->
+            <div class="lg:col-span-7 space-y-6 reveal active">
+                <div class="inline-flex items-center gap-3 px-3 py-1.5 border-2 border-editorialSlate rounded-full bg-editorialSand text-xs font-bold code-font">
+                    <span class="w-2.5 h-2.5 rounded-full bg-emerald-600 animate-ping"></span>
+                    OPEN FOR SOFTWARE ENGINEERING ROLES & INTERNSHIPS
+                </div>
+                
+                <h1 class="editorial-title text-4xl sm:text-6xl lg:text-7xl font-black tracking-tight leading-[1.05] text-editorialSlate">
+                    SEERLA YUVA <br>
+                    <span class="italic font-normal text-editorialBlue">SRINIVAS</span> <br>
+                    KISHORE.
+                </h1>
+
+                <p class="text-lg lg:text-xl text-editorialSlate/90 font-medium max-w-xl leading-relaxed">
+                    "I build practical, user-focused software that turns ideas into functional, scalable digital products."
+                </p>
+
+                <div class="flex flex-wrap items-center gap-4 pt-4">
+                    <a href="#projects" class="px-6 py-3.5 rounded-full font-bold uppercase tracking-wider text-sm editorial-btn flex items-center gap-2">
+                        <span>Explore Projects</span>
+                        <i class="fa-solid fa-arrow-down"></i>
+                    </a>
+                    <a href="https://github.com/Kishore-max-sys" target="_blank" class="px-6 py-3.5 rounded-full font-bold uppercase tracking-wider text-sm border-2 border-editorialSlate bg-editorialSand text-editorialSlate hover:bg-editorialSlate hover:text-editorialCream transition-all flex items-center gap-2 shadow-[4px_4px_0px_#2E3856]">
+                        <i class="fa-brands fa-github text-lg"></i> GitHub
+                    </a>
+                </div>
+
+                <!-- Quick Stats row -->
+                <div class="grid grid-cols-3 gap-4 pt-8 border-t-2 border-editorialSlate/20">
+                    <div>
+                        <span class="block editorial-title text-3xl lg:text-4xl font-bold">9.19</span>
+                        <span class="code-font text-xs uppercase tracking-wider text-editorialSlate/70">VIT-AP CGPA</span>
+                    </div>
+                    <div>
+                        <span class="block editorial-title text-3xl lg:text-4xl font-bold">2028</span>
+                        <span class="code-font text-xs uppercase tracking-wider text-editorialSlate/70">Graduation</span>
+                    </div>
+                    <div>
+                        <span class="block editorial-title text-3xl lg:text-4xl font-bold">100%</span>
+                        <span class="code-font text-xs uppercase tracking-wider text-editorialSlate/70">Functional Code</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Magazine Feature Card / Profile Card -->
+            <div class="lg:col-span-5 reveal">
+                <div class="editorial-card rounded-3xl p-6 lg:p-8 bg-editorialSlate text-editorialCream relative overflow-hidden shadow-[8px_8px_0px_#D97706]">
+                    <!-- Decorative background badge -->
+                    <div class="absolute -right-10 -bottom-10 w-40 h-40 bg-editorialBlue/40 rounded-full blur-2xl pointer-events-none"></div>
+                    
+                    <div class="flex justify-between items-start mb-6 border-b border-editorialCream/20 pb-4">
+                        <div>
+                            <span class="code-font text-xs text-editorialRose uppercase tracking-widest block">FEATURED PROFILE</span>
+                            <h2 class="editorial-title text-2xl font-bold text-editorialCream mt-1">Seerla Yuva Srinivas Kishore</h2>
+                        </div>
+                        <div class="w-12 h-12 bg-editorialRose text-editorialDark font-black text-xl rounded-xl flex items-center justify-center border-2 border-editorialCream shadow-md animate-float">
+                            KS
+                        </div>
+                    </div>
+
+                    <div class="space-y-4 text-sm text-editorialCream/90 font-light">
+                        <div class="flex items-center justify-between py-2 border-b border-editorialCream/10">
+                            <span class="code-font text-xs text-editorialRose">CURRENT ROLE</span>
+                            <span class="font-semibold text-right">B.Tech CSE (Core) Student</span>
+                        </div>
+                        <div class="flex items-center justify-between py-2 border-b border-editorialCream/10">
+                            <span class="code-font text-xs text-editorialRose">INSTITUTION</span>
+                            <span class="font-semibold text-right">VIT-AP University, Amaravati</span>
+                        </div>
+                        <div class="flex items-center justify-between py-2 border-b border-editorialCream/10">
+                            <span class="code-font text-xs text-editorialRose">CORE EXPERTISE</span>
+                            <span class="font-semibold text-right">Full Stack & Databases</span>
+                        </div>
+                        <div class="flex items-center justify-between py-2">
+                            <span class="code-font text-xs text-editorialRose">CERTIFICATION</span>
+                            <span class="font-semibold text-right text-amber-300">MongoDB Administrator</span>
+                        </div>
+                    </div>
+
+                    <div class="mt-8 pt-4 border-t border-editorialCream/20 flex items-center justify-between">
+                        <a href="https://www.linkedin.com/in/seerla-yuva-srinivas-kishore-0407753a4/" target="_blank" class="text-xs code-font underline hover:text-editorialRose flex items-center gap-1">
+                            <i class="fa-brands fa-linkedin"></i> Connect on LinkedIn
+                        </a>
+                        
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- About & Education Magazine Spread -->
+    <section id="about" class="py-16 px-4 lg:px-12 max-w-7xl mx-auto border-t-2 border-editorialSlate/20">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            
+            <div class="lg:col-span-5 space-y-6 reveal">
+                <div class="inline-block px-3 py-1 bg-editorialSlate text-editorialCream rounded text-xs code-font uppercase">
+                    01 // THE BIOGRAPHY
+                </div>
+                <h2 class="editorial-title text-4xl lg:text-5xl font-bold tracking-tight text-editorialSlate">
+                    Engineered for <br><span class="italic text-editorialBlue">Excellence</span> & Impact.
+                </h2>
+                <p class="text-editorialSlate/80 leading-relaxed font-medium">
+                    I am a dedicated Computer Science Engineering undergraduate at VIT-AP University with a strong academic foundation (9.19 CGPA) and a passion for creating reliable, robust applications from database architecture to sleek user interfaces.
+                </p>
+                <div class="p-4 bg-editorialSand border-2 border-editorialSlate rounded-2xl shadow-[4px_4px_0px_#2E3856]">
+                    <div class="flex items-center gap-3 mb-2">
+                        <i class="fa-solid fa-graduation-cap text-xl text-editorialBlue"></i>
+                        <h4 class="font-bold text-editorialSlate">Academic Milestones</h4>
+                    </div>
+                    <ul class="space-y-2 text-sm text-editorialSlate/90 font-medium">
+                        <li class="flex justify-between items-center">
+                            <span>B.Tech CSE (Core) - VIT-AP</span>
+                            <span class="code-font font-bold text-editorialAccent">9.19 CGPA</span>
+                        </li>
+                        <li class="flex justify-between items-center border-t border-editorialSlate/10 pt-2">
+                            <span>Intermediate Education</span>
+                            <span class="code-font font-bold">982 / 1000</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="lg:col-span-7 reveal">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    <!-- Stat Card 1 -->
+                    <div class="editorial-card rounded-2xl p-6 bg-white">
+                        <div class="w-12 h-12 bg-editorialSlate text-editorialCream rounded-xl flex items-center justify-center text-xl mb-4">
+                            <i class="fa-solid fa-code"></i>
+                        </div>
+                        <h3 class="editorial-title text-xl font-bold mb-2">Full-Stack Development</h3>
+                        <p class="text-sm text-editorialSlate/70">
+                            Designing responsive React frontends coupled with secure, repository-pattern Node.js & Express backends.
+                        </p>
+                    </div>
+                    <!-- Stat Card 2 -->
+                    <div class="editorial-card rounded-2xl p-6 bg-white">
+                        <div class="w-12 h-12 bg-editorialSlate text-editorialCream rounded-xl flex items-center justify-center text-xl mb-4">
+                            <i class="fa-solid fa-database"></i>
+                        </div>
+                        <h3 class="editorial-title text-xl font-bold mb-2">Database Administration</h3>
+                        <p class="text-sm text-editorialSlate/70">
+                            Certified MongoDB Administrator with strong proficiency in MySQL schemas, normalization, and efficient querying.
+                        </p>
+                    </div>
+                    <!-- Stat Card 3 -->
+                    <div class="editorial-card rounded-2xl p-6 bg-white">
+                        <div class="w-12 h-12 bg-editorialSlate text-editorialCream rounded-xl flex items-center justify-center text-xl mb-4">
+                            <i class="fa-solid fa-brain"></i>
+                        </div>
+                        <h3 class="editorial-title text-xl font-bold mb-2">Algorithms & Logic</h3>
+                        <p class="text-sm text-editorialSlate/70">
+                            Active problem solver on LeetCode with rigorous practice in Data Structures.
+                        </p>
+                    </div>
+                    <!-- Stat Card 4 -->
+                    <div class="editorial-card rounded-2xl p-6 bg-white">
+                        <div class="w-12 h-12 bg-editorialSlate text-editorialCream rounded-xl flex items-center justify-center text-xl mb-4">
+                            <i class="fa-solid fa-rocket"></i>
+                        </div>
+                        <h3 class="editorial-title text-xl font-bold mb-2">Deployment & Git</h3>
+                        <p class="text-sm text-editorialSlate/70">
+                            Experienced with version control, collaborative workflows, and hosting full-stack apps on modern cloud platforms.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Tech Stack & Skills Showcase -->
+    <section id="skills" class="py-16 px-4 lg:px-12 max-w-7xl mx-auto border-t-2 border-editorialSlate/20">
+        <div class="text-center max-w-2xl mx-auto mb-12 reveal">
+            <span class="code-font text-xs uppercase tracking-widest text-editorialBlue px-3 py-1 bg-editorialSand rounded-full border border-editorialSlate">
+                02 // TECHNICAL ARSENAL
+            </span>
+            <h2 class="editorial-title text-4xl lg:text-5xl font-bold mt-3 text-editorialSlate">
+                Tools & Technologies
+            </h2>
+            <p class="text-editorialSlate/70 text-sm mt-2">
+                A curated breakdown of the languages, frameworks, and tools I use to bring ideas to life.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 reveal">
+            
+            <!-- Category 1: Languages -->
+            <div class="editorial-card p-6 rounded-2xl bg-white">
+                <div class="flex items-center gap-3 mb-4 border-b-2 border-editorialSlate pb-3">
+                    <i class="fa-solid fa-terminal text-2xl text-editorialAccent"></i>
+                    <h3 class="editorial-title font-bold text-xl">Languages</h3>
+                </div>
+                <div class="flex flex-wrap gap-2">
+                    <span class="px-3 py-1.5 bg-editorialSand border border-editorialSlate rounded-lg text-xs font-bold code-font">Java</span>
+                    <span class="px-3 py-1.5 bg-editorialSand border border-editorialSlate rounded-lg text-xs font-bold code-font">Python</span>
+                    <span class="px-3 py-1.5 bg-editorialSand border border-editorialSlate rounded-lg text-xs font-bold code-font">SQL</span>
+                    <span class="px-3 py-1.5 bg-editorialSand border border-editorialSlate rounded-lg text-xs font-bold code-font">JavaScript</span>
+                </div>
+            </div>
+
+            <!-- Category 2: Frontend & UI -->
+            <div class="editorial-card p-6 rounded-2xl bg-white">
+                <div class="flex items-center gap-3 mb-4 border-b-2 border-editorialSlate pb-3">
+                    <i class="fa-solid fa-paint-brush text-2xl text-editorialBlue"></i>
+                    <h3 class="editorial-title font-bold text-xl">Frontend & Web</h3>
+                </div>
+                <div class="flex flex-wrap gap-2">
+                    <span class="px-3 py-1.5 bg-editorialSand border border-editorialSlate rounded-lg text-xs font-bold code-font">HTML5</span>
+                    <span class="px-3 py-1.5 bg-editorialSand border border-editorialSlate rounded-lg text-xs font-bold code-font">CSS3</span>
+                    <span class="px-3 py-1.5 bg-editorialSand border border-editorialSlate rounded-lg text-xs font-bold code-font">JavaScript</span>
+                    <span class="px-3 py-1.5 bg-editorialSand border border-editorialSlate rounded-lg text-xs font-bold code-font">React JS</span>
+                    <span class="px-3 py-1.5 bg-editorialSand border border-editorialSlate rounded-lg text-xs font-bold code-font">Bootstrap</span>
+                </div>
+            </div>
+
+            <!-- Category 3: Backend & APIs -->
+            <div class="editorial-card p-6 rounded-2xl bg-white">
+                <div class="flex items-center gap-3 mb-4 border-b-2 border-editorialSlate pb-3">
+                    <i class="fa-solid fa-server text-2xl text-emerald-600"></i>
+                    <h3 class="editorial-title font-bold text-xl">Backend & REST</h3>
+                </div>
+                <div class="flex flex-wrap gap-2">
+                    <span class="px-3 py-1.5 bg-editorialSand border border-editorialSlate rounded-lg text-xs font-bold code-font">Node.js</span>
+                    <span class="px-3 py-1.5 bg-editorialSand border border-editorialSlate rounded-lg text-xs font-bold code-font">Express.js</span>
+                    <span class="px-3 py-1.5 bg-editorialSand border border-editorialSlate rounded-lg text-xs font-bold code-font">REST APIs</span>
+                    <span class="px-3 py-1.5 bg-editorialSand border border-editorialSlate rounded-lg text-xs font-bold code-font">Repository Pattern</span>
+                </div>
+            </div>
+
+            <!-- Category 4: Databases & Tools -->
+            <div class="editorial-card p-6 rounded-2xl bg-white">
+                <div class="flex items-center gap-3 mb-4 border-b-2 border-editorialSlate pb-3">
+                    <i class="fa-solid fa-database text-2xl text-purple-600"></i>
+                    <h3 class="editorial-title font-bold text-xl">DB & Tools</h3>
+                </div>
+                <div class="flex flex-wrap gap-2">
+                    <span class="px-3 py-1.5 bg-editorialSand border border-editorialSlate rounded-lg text-xs font-bold code-font">MySQL</span>
+                    <span class="px-3 py-1.5 bg-editorialSand border border-editorialSlate rounded-lg text-xs font-bold code-font">MongoDB</span>
+                    <span class="px-3 py-1.5 bg-editorialSand border border-editorialSlate rounded-lg text-xs font-bold code-font">Git</span>
+                    <span class="px-3 py-1.5 bg-editorialSand border border-editorialSlate rounded-lg text-xs font-bold code-font">VS Code</span>
+                    <span class="px-3 py-1.5 bg-editorialSand border border-editorialSlate rounded-lg text-xs font-bold code-font">DSA</span>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Featured Projects Section -->
+    <section id="projects" class="py-16 px-4 lg:px-12 max-w-7xl mx-auto border-t-2 border-editorialSlate/20">
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 reveal">
+            <div>
+                <span class="code-font text-xs uppercase tracking-widest text-editorialBlue px-3 py-1 bg-editorialSand rounded-full border border-editorialSlate">
+                    03 // FEATURED WORKS
+                </span>
+                <h2 class="editorial-title text-4xl lg:text-5xl font-bold mt-3 text-editorialSlate">
+                    Projects & Creations
+                </h2>
+            </div>
+            <p class="text-editorialSlate/70 text-sm max-w-md mt-4 md:mt-0">
+                Explore full-stack financial applications and responsive e-commerce interfaces built with clean architecture.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            
+            <!-- Project 1: SpendSense -->
+            <div class="editorial-card rounded-3xl p-8 bg-white flex flex-col justify-between reveal">
+                <div>
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="px-3 py-1 bg-editorialSlate text-editorialCream rounded-full text-xs code-font uppercase">
+                            FULL STACK APP
+                        </span>
+                        <span class="code-font text-xs text-editorialSlate/60">01 / FEATURED</span>
+                    </div>
+
+                    <h3 class="editorial-title text-3xl font-bold text-editorialSlate mb-3">
+                        Expense Tracker (SpendSense)
+                    </h3>
+
+                    <p class="text-editorialSlate/80 text-sm leading-relaxed mb-6 font-medium">
+                        A full-stack personal finance management application engineered for tracking income and expenses, organizing transactions by category, and viewing real financial insights.
+                    </p>
+
+                    <div class="space-y-2 mb-6 text-xs text-editorialSlate/90 font-medium bg-editorialSand/50 p-4 rounded-xl border border-editorialSlate/20">
+                        <div class="flex items-start gap-2">
+                            <i class="fa-solid fa-check text-editorialAccent mt-0.5"></i>
+                            <span>Developed a REST API backend with repository-pattern architecture using Node.js and Express.js, backed by a normalized MySQL database schema.</span>
+                        </div>
+                        <div class="flex items-start gap-2">
+                            <i class="fa-solid fa-check text-editorialAccent mt-0.5"></i>
+                            <span>Implemented user authentication, transaction management, category organization, filtering/sorting, and responsive dashboard using React.</span>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-wrap gap-2 mb-8">
+                        <span class="px-2.5 py-1 bg-editorialSand border border-editorialSlate rounded text-xs code-font">React JS</span>
+                        <span class="px-2.5 py-1 bg-editorialSand border border-editorialSlate rounded text-xs code-font">Node.js</span>
+                        <span class="px-2.5 py-1 bg-editorialSand border border-editorialSlate rounded text-xs code-font">Express.js</span>
+                        <span class="px-2.5 py-1 bg-editorialSand border border-editorialSlate rounded text-xs code-font">MySQL</span>
+                    </div>
+                </div>
+
+                <div class="flex items-center gap-4 pt-4 border-t-2 border-editorialSlate/10">
+                    <a href="https://spendsense-rk.onrender.com/" target="_blank" class="px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider editorial-btn flex items-center gap-2">
+                        <i class="fa-solid fa-globe"></i> Live Demo
+                    </a>
+                    <a href="https://github.com/Kishore-max-sys/SpendSense" target="_blank" class="px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider border-2 border-editorialSlate bg-editorialSand text-editorialSlate hover:bg-editorialSlate hover:text-editorialCream transition-all flex items-center gap-2">
+                        <i class="fa-brands fa-github"></i> Repository
+                    </a>
+                </div>
+            </div>
+
+            <!-- Project 2: Amazon Clone -->
+            <div class="editorial-card rounded-3xl p-8 bg-white flex flex-col justify-between reveal">
+                <div>
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="px-3 py-1 bg-editorialBlue text-editorialCream rounded-full text-xs code-font uppercase">
+                            FRONTEND INTERFACE
+                        </span>
+                        <span class="code-font text-xs text-editorialSlate/60">02 / FEATURED</span>
+                    </div>
+
+                    <h3 class="editorial-title text-3xl font-bold text-editorialSlate mb-3">
+                        Amazon E-Commerce UI Clone
+                    </h3>
+
+                    <p class="text-editorialSlate/80 text-sm leading-relaxed mb-6 font-medium">
+                        A polished front-end clone of the Amazon web interface built with pure HTML, CSS, and JavaScript, focusing on responsive layout and interactive UI components.
+                    </p>
+
+                    <div class="space-y-2 mb-6 text-xs text-editorialSlate/90 font-medium bg-editorialSand/50 p-4 rounded-xl border border-editorialSlate/20">
+                        <div class="flex items-start gap-2">
+                            <i class="fa-solid fa-check text-editorialAccent mt-0.5"></i>
+                            <span>Built a responsive e-commerce layout replicating authentic desktop and mobile navigation experiences.</span>
+                        </div>
+                        <div class="flex items-start gap-2">
+                            <i class="fa-solid fa-check text-editorialAccent mt-0.5"></i>
+                            <span>Implemented dynamic product listings, search bars, and interactive UI elements to simulate core e-commerce interactions.</span>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-wrap gap-2 mb-8">
+                        <span class="px-2.5 py-1 bg-editorialSand border border-editorialSlate rounded text-xs code-font">HTML5</span>
+                        <span class="px-2.5 py-1 bg-editorialSand border border-editorialSlate rounded text-xs code-font">CSS3</span>
+                        <span class="px-2.5 py-1 bg-editorialSand border border-editorialSlate rounded text-xs code-font">JavaScript</span>
+                        <span class="px-2.5 py-1 bg-editorialSand border border-editorialSlate rounded text-xs code-font">Responsive UI</span>
+                    </div>
+                </div>
+
+                <div class="flex items-center gap-4 pt-4 border-t-2 border-editorialSlate/10">
+                    <a href="https://amazon-clone-tawny-eight.vercel.app/" target="_blank" class="px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider editorial-btn flex items-center gap-2">
+                        <i class="fa-solid fa-globe"></i> Live Demo
+                    </a>
+                    <a href="https://github.com/Kishore-max-sys/amazon-clone" target="_blank" class="px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider border-2 border-editorialSlate bg-editorialSand text-editorialSlate hover:bg-editorialSlate hover:text-editorialCream transition-all flex items-center gap-2">
+                        <i class="fa-brands fa-github"></i> Repository
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Milestones & Certifications -->
+    <section id="milestones" class="py-16 px-4 lg:px-12 max-w-7xl mx-auto border-t-2 border-editorialSlate/20">
+        <div class="text-center max-w-2xl mx-auto mb-12 reveal">
+            <span class="code-font text-xs uppercase tracking-widest text-editorialBlue px-3 py-1 bg-editorialSand rounded-full border border-editorialSlate">
+                04 // CREDENTIALS & CERTIFICATES
+            </span>
+            <h2 class="editorial-title text-4xl lg:text-5xl font-bold mt-3 text-editorialSlate">
+                Milestones
+            </h2>
+        </div>
+
+        <div class="max-w-3xl mx-auto reveal">
+            <div class="editorial-card p-6 lg:p-8 rounded-3xl bg-white flex flex-col sm:flex-row items-center justify-between gap-6">
+                <div class="flex items-center gap-5">
+                    <div class="w-16 h-16 bg-emerald-600 text-editorialCream rounded-2xl flex items-center justify-center text-2xl border-2 border-editorialSlate shrink-0 shadow-[4px_4px_0px_#2E3856]">
+                        <i class="fa-solid fa-certificate"></i>
+                    </div>
+                    <div>
+                        <span class="code-font text-xs uppercase tracking-widest text-emerald-700 font-bold block">VERIFIED CREDENTIAL</span>
+                        <h3 class="editorial-title text-2xl font-bold text-editorialSlate mt-1">MongoDB Database Administrator Certification</h3>
+                        <p class="text-xs text-editorialSlate/70 mt-1">Professional certification validating deep expertise in MongoDB administration, data modeling, security, backup, and recovery.</p>
+                    </div>
+                </div>
+                <a href="https://drive.google.com/file/d/1CKyvVSm08x12G3jTfytkAq4QFHa3UOoj/view" target="_blank" class="px-6 py-3 rounded-full text-xs font-bold uppercase tracking-wider editorial-btn whitespace-nowrap flex items-center gap-2">
+                    <i class="fa-solid fa-external-link"></i> View Certificate
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact & Social Footer Section -->
+    <section id="contact" class="py-20 px-4 lg:px-12 max-w-7xl mx-auto border-t-2 border-editorialSlate/20">
+        <div class="editorial-card rounded-3xl p-8 lg:p-16 bg-editorialSlate text-editorialCream relative overflow-hidden shadow-[10px_10px_0px_#D97706]">
+            <!-- Decorative circle -->
+            <div class="absolute -right-20 -top-20 w-80 h-80 bg-editorialBlue/30 rounded-full blur-3xl pointer-events-none"></div>
+
+            <div class="max-w-2xl mx-auto text-center space-y-6 relative z-10">
+                <span class="code-font text-xs uppercase tracking-widest text-editorialRose px-3 py-1 bg-editorialCream/10 rounded-full border border-editorialCream/20">
+                    05 // GET IN TOUCH
+                </span>
+                <h2 class="editorial-title text-4xl sm:text-6xl font-bold tracking-tight text-editorialCream">
+                    Let's Build Something <span class="italic text-editorialRose">Remarkable.</span>
+                </h2>
+                <p class="text-editorialCream/80 text-base lg:text-lg font-light leading-relaxed">
+                    I am actively seeking software engineering internships, collaborative projects, and opportunities to create high-impact digital products. Reach out anytime!
+                </p>
+
+                <div class="pt-4 flex flex-wrap items-center justify-center gap-4">
+                    <a href="https://mail.google.com/mail/?view=cm&fs=1&to=seerlayuvasrinivaskishore@gmail.com" target="_blank" class="px-8 py-4 rounded-full font-bold uppercase tracking-wider text-sm bg-editorialRose text-editorialDark border-2 border-editorialCream hover:bg-editorialCream transition-all shadow-[4px_4px_0px_#F4ECD8] flex items-center gap-2">
+                        <i class="fa-solid fa-envelope"></i> seerlayuvasrinivaskishore@gmail.com
+                    </a>
+                </div>
+
+                <!-- Social Links Grid -->
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-12 border-t border-editorialCream/20">
+                    <a href="https://github.com/Kishore-max-sys" target="_blank" class="p-4 rounded-2xl border border-editorialCream/20 bg-editorialCream/5 hover:bg-editorialCream/15 transition-all text-center group">
+                        <i class="fa-brands fa-github text-2xl text-editorialRose mb-2 group-hover:scale-110 transition-transform"></i>
+                        <span class="block text-xs font-bold uppercase code-font">GitHub</span>
+                    </a>
+                    <a href="https://www.linkedin.com/in/seerla-yuva-srinivas-kishore-0407753a4/" target="_blank" class="p-4 rounded-2xl border border-editorialCream/20 bg-editorialCream/5 hover:bg-editorialCream/15 transition-all text-center group">
+                        <i class="fa-brands fa-linkedin text-2xl text-editorialRose mb-2 group-hover:scale-110 transition-transform"></i>
+                        <span class="block text-xs font-bold uppercase code-font">LinkedIn</span>
+                    </a>
+                    <a href="https://leetcode.com/u/yuvakishore_7/" target="_blank" class="p-4 rounded-2xl border border-editorialCream/20 bg-editorialCream/5 hover:bg-editorialCream/15 transition-all text-center group">
+                        <i class="fa-solid fa-code text-2xl text-editorialRose mb-2 group-hover:scale-110 transition-transform"></i>
+                        <span class="block text-xs font-bold uppercase code-font">LeetCode</span>
+                    </a>
+                    <a href="https://mail.google.com/mail/?view=cm&fs=1&to=seerlayuvasrinivaskishore@gmail.com" target="_blank" class="p-4 rounded-2xl border border-editorialCream/20 bg-editorialCream/5 hover:bg-editorialCream/15 transition-all text-center group">
+                        <i class="fa-solid fa-paper-plane text-2xl text-editorialRose mb-2 group-hover:scale-110 transition-transform"></i>
+                        <span class="block text-xs font-bold uppercase code-font">Email</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-editorialSlate text-editorialCream py-8 border-t-2 border-editorialCream/20 text-center text-xs code-font">
+        <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <p>© 2026 Seerla Yuva Srinivas Kishore. All Rights Reserved.</p>
+            <p class="text-editorialRose">Designed with Editorial Fashion Magazine Aesthetic</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript for Interactions -->
+    <script>
+        // Toggle Mobile Menu
+        const menuToggle = document.getElementById('menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        menuToggle.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu on link click
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Scroll Reveal Animation observer
+        const revealElements = document.querySelectorAll('.reveal');
+
+        const revealObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, {
+            threshold: 0.15
+        });
+
+        revealElements.forEach(el => {
+            revealObserver.observe(el);
+        });
+    </script>
+</body>
+</html>
